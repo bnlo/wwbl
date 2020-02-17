@@ -1,0 +1,8 @@
+$xs: 600px;
+
+@media (max-width: $xs) {
+  #cv img { display: none; }
+  #cv > div { padding-left: 20px; }
+}
+@media (min-width: $xs) {
+}
