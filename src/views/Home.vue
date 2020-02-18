@@ -1,52 +1,16 @@
 <template>
   <div>
-    <!--  -->
-    <div class="d-flex jcsb section">
-      <div class="fg1">
-        <my-h>contact</my-h>
-        <ul>
-          <li>louis bon</li>
-          <li>+33 630700577</li>
-          <li>france, paris xiii</li>
-          <li>
-            <a href="mailto:dev.louisbon@gmail.com">dev.louisbon@gmail.com</a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <img src="@/assets/bluepixel.jpg" alt />
-      </div>
-    </div>
-    <!--  -->
-    <div class="section">
-      <my-h>parcours</my-h>
+    <div v-for="section of sections" :key="section.title" :class="`section ${section.class || ''}`.trim()">
+      <my-h>{{ section.title }}</my-h>
       <ul>
-        <li>bac es (2010)</li>
-        <li>bac pro photo (2014)</li>
-        <li>developpeur multimedia (2017)</li>
+        <li v-for="line of section.lines" :key="line.text || line">
+          <a v-if="line.to" :href="line.to">{{ line.text }}</a>
+          <template v-else>{{ line }}</template>
+        </li>
       </ul>
     </div>
-    <!--  -->
-    <div class="section">
-      <my-h>experience</my-h>
-      <ul>
-        <li>developpement (3 ans)</li>
-        <li></li>
-      </ul>
-    </div>
-    <!--  -->
-    <div class="section">
-      <my-h>competences</my-h>
-      <ul>
-        <li>javascript</li>
-        <li>postgresql</li>
-        <li>html|css</li>
-        <li>nodejs</li>
-        <li>vuejs</li>
-        <li>bash</li>
-      </ul>
-    </div>
-    <!--  -->
+    <img src="@/assets/bluepixel.jpg" alt="">
+
   </div>
 </template>
 
@@ -55,35 +19,80 @@
 import MyH from '@/components/MyH'
 export default {
   name: 'Home',
+  data: () => ({
+    sections: [{
+      title: 'contact',
+      lines: [
+        'louis bon',
+        '+33 630700577',
+        'france, paris xiii',
+        {
+          text: 'dev.louisbon@gmail.com',
+          to: 'mailto:dev.louisbon@gmail.com'
+        }
+      ]
+    }, {
+      title: 'parcours',
+      lines: [
+        'bac es (2010)',
+        'fac geo/bio (2011-12)',
+        'bac pro photographie (2014)',
+        'licence developpement (2017)'
+      ]
+    }, {
+      title: 'experience',
+      lines: [
+        'alternance (autovisual - 1an)',
+        'scraping (2ans)'
+      ]
+    }, {
+      title: 'competences',
+      lines: [
+        'javascript',
+        'postgresql',
+        'html/css',
+        'nodejs',
+        'vuejs',
+        'bash'
+      ]
+    }]
+  }),
   components: { MyH }
 }
 </script>
 
 <style lang="scss" scoped>
+a {
+  text-decoration-style: wavy;
+  &:visited { color: initial; }
+}
 img {
   display: initial;
-  height: 150px;
-  border-left: $border-size solid $text-color;
-  border-bottom: $border-size solid $text-color;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: auto;
+  width: 200px;
+  border: $border-size solid $text-color;
+  // border-left: $border-size solid $text-color;
+  // border-bottom: $border-size solid $text-color;
 }
 
-  .section {
-    padding-left: 1.5em;
-    &:first-child { padding-left: 3%; }
-    &:nth-child(2) { padding-left: 50%; }
-    &:nth-child(3) { padding-left: 33%; }
-    &:last-child { padding-left: 10%; }
-  }
-  #one {
+.section {
+  padding-left: 1.5em;
+  &:first-child {
     padding-left: 3%;
   }
-  #two {
-    padding-left: 50%;
+  &:nth-child(2) {
+    padding-left: 30%;
   }
-  #three {
-    padding-left: 33%;
+  &:nth-child(3) {
+    padding-left: 15%;
   }
-  #four {
+  &:last-child {
     padding-left: 10%;
   }
+}
+
 </style>
