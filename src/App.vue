@@ -9,7 +9,7 @@
   height: 100%;
   width: 100%;
   color: $text-color;
-  border: $border-size solid $text-color;
+  // border: $border-size solid $text-color;
   background-color: $bg-color;
   font-family: $font-family;
   overflow: auto;

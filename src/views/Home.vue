@@ -3,14 +3,16 @@
     <div v-for="section of sections" :key="section.title" :class="`section ${section.class || ''}`.trim()">
       <my-h>{{ section.title }}</my-h>
       <ul>
-        <li v-for="line of section.lines" :key="line.text || line">
+        <li v-for="(line, i) of section.lines" :key="line + i">
           <a v-if="line.to" :href="line.to">{{ line.text }}</a>
-          <template v-else>{{ line }}</template>
+          <template v-else>{{ line.main || line }}</template>
+          <ul :class="`subs ${line.class || ''}`.trim()" v-if="line.sub">
+            <li v-for="sub of line.sub" :key="sub">{{ sub }}</li>
+          </ul>
         </li>
       </ul>
     </div>
-    <img src="@/assets/bluepixel.jpg" alt="">
-
+    <img id="portrait" src="@/assets/bluepixel.jpg" alt="">
   </div>
 </template>
 
@@ -32,7 +34,7 @@ export default {
         }
       ]
     }, {
-      title: 'parcours',
+      title: 'formations',
       lines: [
         'bac es (2010)',
         'fac geo/bio (2011-12)',
@@ -41,20 +43,67 @@ export default {
       ]
     }, {
       title: 'experience',
-      lines: [
-        'alternance (autovisual - 1an)',
-        'scraping (2ans)'
-      ]
+      lines: [{
+        class: 'wrap',
+        main: 'alternance-cdi autovisual (2017)',
+        sub: [
+          'scraping',
+          'dashboard',
+          'monitoring',
+          'dataviz',
+          'lead front'
+        ]
+      }, {
+        main: 'freelance',
+        class: 'wrap',
+        sub: [
+          'scraping',
+          'puppeteer'
+        ]
+      }]
     }, {
       title: 'competences',
-      lines: [
-        'javascript',
-        'postgresql',
-        'html/css',
-        'nodejs',
-        'vuejs',
-        'bash'
-      ]
+      lines: [{
+        main: 'javascript',
+        sub: [
+          'node',
+          'vue',
+          'd3',
+          'webpack...'
+        ]
+      }, {
+        main: 'postgresql',
+        sub: [
+          'view',
+          'cluster',
+          'triggers',
+          'pgbouncer...'
+        ]
+      }, {
+        main: 'scraping',
+        sub: [
+          'puppeteer',
+          'charles',
+          'luminati',
+          'retro-ingenierie...'
+        ]
+      }, {
+        main: 'html/css',
+        sub: [
+          'scss',
+          'vuetify',
+          'bootstrap',
+          'canvas...'
+        ]
+      }, {
+        main: 'linux',
+        sub: [
+          'bash',
+          'cron',
+          'systemctl',
+          'kali...'
+        ]
+      }]
     }]
   }),
   components: { MyH }
@@ -81,18 +130,39 @@ img {
 
 .section {
   padding-left: 1.5em;
-  &:first-child {
-    padding-left: 3%;
-  }
-  &:nth-child(2) {
-    padding-left: 30%;
-  }
-  &:nth-child(3) {
-    padding-left: 15%;
-  }
-  &:last-child {
-    padding-left: 10%;
-  }
+  &:first-child { padding-left: 3%; }
+  &:nth-child(2) { padding-left: 30%; }
+  &:nth-child(3) { padding-left: 15%; }
+  &:last-child { padding-left: 10%; }
 }
 
+.subs {
+  padding-left: 10px;
+  font-style: italic;
+  font-weight: 600;
+  color: $shadow-color;
+  opacity: .25;
+  display: flex;
+  flex-wrap: wrap;
+  li:not(:first-child) {
+    margin-left: 10px;
+  }
+  &.wrap li {
+    margin-left: 20px;
+    white-space: nowrap;
+    // flex-basis: 33%;
+    line-height: 1.5;
+  }
+  li {
+    text-decoration: underline;
+  }
+}
+@media (max-width: 600px) {
+  #portrait {
+    display: none;
+  }
+  .section {
+    padding-left: 20px !important;
+  }
+}
 </style>

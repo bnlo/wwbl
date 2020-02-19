@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style lang="scss">
-$border-size: 10px;
+// $border-size: 10px;
 .my-h {
   position: relative;
   z-index: 1;
@@ -38,6 +38,7 @@ $border-size: 10px;
     bottom: 0;
     left: 0.5em;
     z-index: -1;
+    opacity: $shadow-opacity;
   }
   // second line
   &::after {
@@ -49,6 +50,7 @@ $border-size: 10px;
     right: 0;
     height: $border-size;
     background-color: $shadow-color;
+    opacity: $shadow-opacity;
   }
 }
 </style>
