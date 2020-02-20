@@ -27,6 +27,7 @@ export default {
 .my-h {
   position: relative;
   z-index: 1;
+  font-weight: 400;
   // first line
   border-bottom: $border-size solid $text-color;
   // shadow
@@ -38,7 +39,6 @@ export default {
     bottom: 0;
     left: 0.5em;
     z-index: -1;
-    opacity: $shadow-opacity;
   }
   // second line
   &::after {
@@ -50,7 +50,6 @@ export default {
     right: 0;
     height: $border-size;
     background-color: $shadow-color;
-    opacity: $shadow-opacity;
   }
 }
 </style>

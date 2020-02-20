@@ -6,12 +6,18 @@
 
 <style lang="scss">
 #app {
-  height: 100%;
-  width: 100%;
   color: $text-color;
   // border: $border-size solid $text-color;
   background-color: $bg-color;
   font-family: $font-family;
-  overflow: auto;
+  padding-bottom: 20px;
+  padding-left: 30px;
+}
+html::-webkit-scrollbar {
+  width: 10px;
+  background-color: $shadow-color;
+}
+html::-webkit-scrollbar-thumb {
+    background: $text-color;
 }
 </style>

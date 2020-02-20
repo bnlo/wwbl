@@ -4,7 +4,7 @@
       <my-h>{{ section.title }}</my-h>
       <ul>
         <li v-for="(line, i) of section.lines" :key="line + i">
-          <a v-if="line.to" :href="line.to">{{ line.text }}</a>
+           <a v-if="line.to" :href="line.to">{{ line.text }}</a>
           <template v-else>{{ line.main || line }}</template>
           <ul :class="`subs ${line.class || ''}`.trim()" v-if="line.sub">
             <li v-for="sub of line.sub" :key="sub">{{ sub }}</li>
@@ -45,7 +45,7 @@ export default {
       title: 'experience',
       lines: [{
         class: 'wrap',
-        main: 'alternance-cdi autovisual (2017)',
+        main: 'fullstack @autovisual (2ans+)',
         sub: [
           'scraping',
           'dashboard',
@@ -54,9 +54,10 @@ export default {
           'lead front'
         ]
       }, {
-        main: 'freelance',
+        main: 'freelance @malt (1an+)',
         class: 'wrap',
         sub: [
+          'front',
           'scraping',
           'puppeteer'
         ]
@@ -85,7 +86,7 @@ export default {
           'puppeteer',
           'charles',
           'luminati',
-          'retro-ingenierie...'
+          'decompilation...'
         ]
       }, {
         main: 'html/css',
@@ -112,8 +113,14 @@ export default {
 
 <style lang="scss" scoped>
 a {
-  text-decoration-style: wavy;
   &:visited { color: initial; }
+  text-decoration: underline dotted;
+  // background: no-repeat center url('~@/assets/ext.svg');
+  // background-size: cover;
+  // display: inline-block;
+  // height: 2rem;
+  // width: 2rem;
+  // color: blue;
 }
 img {
   display: initial;
@@ -124,45 +131,67 @@ img {
   height: auto;
   width: 200px;
   border: $border-size solid $text-color;
-  // border-left: $border-size solid $text-color;
-  // border-bottom: $border-size solid $text-color;
 }
 
 .section {
-  padding-left: 1.5em;
-  &:first-child { padding-left: 3%; }
+  &:not(:first-child) { position: relative; }
   &:nth-child(2) { padding-left: 30%; }
   &:nth-child(3) { padding-left: 15%; }
-  &:last-child { padding-left: 10%; }
+  & > ul > li {
+    border: 1px solid blue;
+  }
+  &:nth-child(2):before {
+    content: 'CV';
+    font-size: 10em;
+    position: absolute;
+    top: -20px;
+    left: 5vw;
+    text-shadow: 29px -42px 0px $shadow-color;
+    display: block;
+  }
 }
 
 .subs {
   padding-left: 10px;
-  font-style: italic;
-  font-weight: 600;
   color: $shadow-color;
-  opacity: .25;
   display: flex;
   flex-wrap: wrap;
-  li:not(:first-child) {
-    margin-left: 10px;
-  }
-  &.wrap li {
-    margin-left: 20px;
-    white-space: nowrap;
-    // flex-basis: 33%;
-    line-height: 1.5;
-  }
+    color: white;
+
   li {
-    text-decoration: underline;
+    padding: 0 10px;
+  }
+  background-color: $shadow-color;
+  &.wrap li {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 1400px) {
+  .section:nth-child(2):before { left: 3vw; }
+}
+@media (max-width: 1100px) {
+  .section:nth-child(2):before { left: 0; }
+}
+@media (max-width: 900px) {
+  .section:nth-child(2):before {
+    font-size: 6em;
+    top: 35px;
+  }
+  #portrait {
+    width: 150px;
   }
 }
 @media (max-width: 600px) {
   #portrait {
     display: none;
   }
-  .section {
-    padding-left: 20px !important;
+  .section:nth-child(2),
+  .section:nth-child(3) {
+    padding-left: inherit;
+  }
+  .section:nth-child(2):before {
+    content: '';
   }
 }
 </style>
