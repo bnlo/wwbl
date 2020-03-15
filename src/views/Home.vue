@@ -17,110 +17,19 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import MyH from '@/components/MyH'
+import sections from './sections'
 export default {
-  name: 'Home',
-  data: () => ({
-    sections: [{
-      title: 'contact',
-      lines: [
-        'louis bon',
-        '+33 630700577',
-        'france, paris xiii',
-        {
-          text: 'dev.louisbon@gmail.com',
-          to: 'mailto:dev.louisbon@gmail.com'
-        }
-      ]
-    }, {
-      title: 'formations',
-      lines: [
-        'bac es (2010)',
-        'fac geo/bio (2011-12)',
-        'bac pro photographie (2014)',
-        'licence developpement (2017)'
-      ]
-    }, {
-      title: 'experience',
-      lines: [{
-        class: 'wrap',
-        main: 'fullstack @autovisual (2ans+)',
-        sub: [
-          'scraping',
-          'dashboard',
-          'monitoring',
-          'dataviz',
-          'lead front'
-        ]
-      }, {
-        main: 'freelance @malt (1an+)',
-        class: 'wrap',
-        sub: [
-          'front',
-          'scraping',
-          'puppeteer'
-        ]
-      }]
-    }, {
-      title: 'competences',
-      lines: [{
-        main: 'javascript',
-        sub: [
-          'node',
-          'vue',
-          'd3',
-          'webpack...'
-        ]
-      }, {
-        main: 'postgresql',
-        sub: [
-          'view',
-          'cluster',
-          'triggers',
-          'pgbouncer...'
-        ]
-      }, {
-        main: 'scraping',
-        sub: [
-          'puppeteer',
-          'charles',
-          'luminati',
-          'decompilation...'
-        ]
-      }, {
-        main: 'html/css',
-        sub: [
-          'scss',
-          'vuetify',
-          'bootstrap',
-          'canvas...'
-        ]
-      }, {
-        main: 'linux',
-        sub: [
-          'bash',
-          'cron',
-          'systemctl',
-          'kali...'
-        ]
-      }]
-    }]
-  }),
+  data: () => ({ sections }),
   components: { MyH }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 a {
   &:visited { color: initial; }
   text-decoration: underline dotted;
-  // background: no-repeat center url('~@/assets/ext.svg');
-  // background-size: cover;
-  // display: inline-block;
-  // height: 2rem;
-  // width: 2rem;
-  // color: blue;
+  word-break: break-word;
 }
 img {
   display: initial;
@@ -142,12 +51,15 @@ img {
   }
   &:nth-child(2):before {
     content: 'CV';
-    font-size: 10em;
+    font-size: 30rem;
     position: absolute;
     top: -20px;
     left: 5vw;
     text-shadow: 29px -42px 0px $shadow-color;
     display: block;
+  }
+    &:first-child h2 {
+    margin-top: 0;
   }
 }
 
@@ -193,5 +105,8 @@ img {
   .section:nth-child(2):before {
     content: '';
   }
+}
+@media (max-width: 287px) {
+
 }
 </style>

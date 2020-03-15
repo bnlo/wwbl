@@ -28,7 +28,6 @@ export default {
   position: relative;
   z-index: 1;
   font-weight: 400;
-  // first line
   border-bottom: $border-size solid $text-color;
   // shadow
   &::before {
@@ -52,4 +51,10 @@ export default {
     background-color: $shadow-color;
   }
 }
+@media (max-width: 350px) {
+  .my-h::before {
+    font-size: 18vw;
+  }
+}
+
 </style>
